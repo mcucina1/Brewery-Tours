@@ -1,0 +1,686 @@
+{
+  "info": {
+    "_postman_id": "b9f6f5c5-da03-4fd4-afd0-102af6939693",
+    "name": "cs314-collection-template",
+    "description": "This is a template collection for CS314.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "Config Post",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8529b530-d267-4c8e-bfe5-2a46714b93b6",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Server-side team name is correct\", () => {",
+                  "    const response = pm.response.json();",
+                  "    const expectedTeamName = pm.collectionVariables.get(\"TEAM_NAME\");",
+                  "    pm.expect(response.serverName).to.eql(expectedTeamName);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "3518c7e3-34b6-4b0a-887f-fb6456501702",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\": \"config\",\n    \"features\": [\"config\"] \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/config",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        }
+      ],
+      "id": "101f3ce3-c6cf-465e-bd9a-ec3e6cc427a0"
+    },
+    {
+      "name": "distances",
+      "item": [
+        {
+          "name": "Empty Distances Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"test empty array returned\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.distances).to.eql([]);",
+                  "});",
+                  "",
+                  "pm.test(\"test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"distances\");",
+                  "});",
+                  "",
+                  "pm.test(\"test earth radius\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.earthRadius).to.eql(1337);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "b98a7685-f930-4acd-8c69-e378faa715fc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"places\": [\n        \n    ],\n    \"earthRadius\": 1337,\n    \"requestType\": \"distances\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/distances",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "One Distances Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"test one distance array returned\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.distances).to.eql([0]);",
+                  "});",
+                  "",
+                  "pm.test(\"test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"distances\");",
+                  "});",
+                  "",
+                  "pm.test(\"test earth radius\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.earthRadius).to.eql(1337);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "86db5b5f-083f-4c48-9bb0-0e429e06a1e6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"places\": [\n        {\n            \"latitude\": \"27.9506\",\n            \"longitude\": \"-82.4572\"\n        }\n    ],\n    \"earthRadius\": 1337,\n    \"requestType\": \"distances\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/distances",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Distances Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test length 5 array returned\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.distances.length).to.eql(5);",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"distances\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test earth radius\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.earthRadius).to.eql(1337);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "f4e82b1d-9645-45b4-a7a6-799867fd2005",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"places\": [\n        {\n            \"latitude\": \"27.9506\",\n            \"longitude\": \"-82.4572\"\n        },\n        {\n            \"latitude\": \"40.8136\",\n            \"longitude\": \"-96.7026\"\n        },\n        {\n            \"latitude\": \"39.7392\",\n            \"longitude\": \"-104.9903\"\n        },\n        {\n            \"latitude\": \"41.1400\",\n            \"longitude\": \"-104.8202\"\n        },\n        {\n            \"latitude\": \"32.7157\",\n            \"longitude\": \"-117.1611\"\n        }\n    ],\n    \"earthRadius\": 1337,\n    \"requestType\": \"distances\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/distances",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        }
+      ],
+      "id": "211ee8b8-98b4-43d2-bf6b-ba3535cc0f98"
+    },
+    {
+      "name": "find",
+      "item": [
+        {
+          "name": "Find Empty Match",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"find\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places.length).to.eql(12);",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.found).to.eql(50427);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "5f3186f9-15ce-4e33-be8c-b2c4b6fbb8e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n    \"match\": \"\",\n    \"limit\": 12,\n    \"requestType\": \"find\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/find",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Find No Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"find\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places.length).to.eql(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.found).to.eql(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "666556b8-059c-4746-b3c3-ca03c8bd05cf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n    \"match\": \"Dave Matthews\",\n    \"limit\": 20,\n    \"requestType\": \"find\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/find",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Find One Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"find\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places.length).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"Test places array to be of length\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.found).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"Test correct place is found\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places).to.eql([",
+                  "        {",
+                  "            \"continent\": \"North America\",",
+                  "            \"country\": \"United States\",",
+                  "            \"altitude\": \"705\",",
+                  "            \"latitude\": \"33.487300872802734\",",
+                  "            \"name\": \"Rowland R Airfield\",",
+                  "            \"municipality\": \"Tom Bean\",",
+                  "            \"region\": \"Texas\",",
+                  "            \"longitude\": \"-96.45580291748047\"",
+                  "        }",
+                  "    ]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "6b0ac11e-a4fd-4ee7-8dd4-dae883cd1f06",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n    \"match\": \"Tom Bean\",\n    \"limit\": 20,\n    \"requestType\": \"find\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/find",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        }
+      ],
+      "id": "5cd5ce59-7f77-4d5d-9193-70e252fab8e5"
+    },
+    {
+      "name": "tour",
+      "item": [
+        {
+          "name": "Tour No Places",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response is under 1 second\", () => {",
+                  "    var limit = 1000;",
+                  "    pm.expect(pm.response.responseTime).to.be.below(limit);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"tour\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test empty places returned\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places).to.eql([]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "25dd0a42-3b1f-4e09-bd7b-b88bf131c07a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n \"requestType\": \"tour\",\n  \"earthRadius\": 3959.0,\n  \"response\": 1,\n  \"places\": [\n\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/tour",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Tour Two Places",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"tour\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test response is under 1 second\", () => {",
+                  "    var limit = 1000;",
+                  "    pm.expect(pm.response.responseTime).to.be.below(limit);",
+                  "});",
+                  "",
+                  "pm.test(\"Test 2 places returned unchanged\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places).to.eql([",
+                  "      {",
+                  "          \"name\": \"Converse County\",",
+                  "          \"latitude\": \"42.74\",",
+                  "          \"longitude\": \"-105.58\"",
+                  "      },",
+                  "            {",
+                  "          \"name\": \"Daisy Road\",",
+                  "          \"latitude\": \"38.96\",",
+                  "          \"longitude\": \"-97.32\"",
+                  "      }",
+                  "  ]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "200b9654-2aec-4744-bdeb-598c58c98e89",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n \"requestType\": \"tour\",\n  \"earthRadius\": 3959.0,\n  \"response\": 1,\n  \"places\": [\n      {\n          \"name\": \"Converse County\",\n          \"latitude\": \"42.74\",\n          \"longitude\": \"-105.58\"\n      },\n            {\n          \"name\": \"Daisy Road\",\n          \"latitude\": \"38.96\",\n          \"longitude\": \"-97.32\"\n      }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/tour",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Tour Star Formation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be307e81-62e6-454b-9e90-0110ec93d040",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response is under 1 second\", () => {",
+                  "    var limit = 1000;",
+                  "    pm.expect(pm.response.responseTime).to.be.below(limit);",
+                  "});",
+                  "",
+                  "pm.test(\"Test response valid\", () => {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Test request type\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.requestType).to.eql(\"tour\");",
+                  "});",
+                  "",
+                  "pm.test(\"Test star becomes pentagon\", () => {",
+                  "    var response = pm.response.json();",
+                  "    pm.expect(response.places).to.eql([",
+                  "        {",
+                  "            \"latitude\": \"42.58\",",
+                  "            \"name\": \"Goshen County\",",
+                  "            \"longitude\": \"-104.37\"",
+                  "        },",
+                  "        {",
+                  "            \"latitude\": \"39.36\",",
+                  "            \"name\": \"Desert Lake Loop\",",
+                  "            \"longitude\": \"-110.79\"",
+                  "        },",
+                  "        {",
+                  "            \"latitude\": \"30.20\",",
+                  "            \"name\": \"Sierra County\",",
+                  "            \"longitude\": \"-107.58\"",
+                  "        },",
+                  "        {",
+                  "            \"latitude\": \"33.09\",",
+                  "            \"name\": \"County Road 423\",",
+                  "            \"longitude\": \"-99.84\"",
+                  "        },",
+                  "        {",
+                  "            \"latitude\": \"40.44\",",
+                  "            \"name\": \"County Road 2350\",",
+                  "            \"longitude\": \"-96.94\"",
+                  "        }",
+                  "    ]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "8db0415d-3b61-469d-a8e5-b22b331f8d5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n \"requestType\": \"tour\",\n  \"earthRadius\": 3959.0,\n  \"response\": 1,\n  \"places\": [\n    {\n        \"name\": \"Goshen County\",\n        \"latitude\": \"42.58\",\n        \"longitude\": \"-104.37\"\n    },\n    {\n        \"name\": \"County Road 423\",\n        \"latitude\": \"33.09\",\n        \"longitude\": \"-99.84\"\n    },\n    {\n        \"name\": \"Desert Lake Loop\",\n        \"latitude\": \"39.36\",\n        \"longitude\": \"-110.79\"\n    },\n    {\n        \"name\": \"County Road 2350\",\n        \"latitude\": \"40.44\",\n        \"longitude\": \"-96.94\"\n    },\n    {\n        \"name\": \"Sierra County\",\n        \"latitude\":\"30.20\",\n        \"longitude\": \"-107.58\"\n    }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/tour",
+            "description": "Testing the result of Config Post requests."
+          },
+          "response": []
+        }
+      ],
+      "id": "49945533-6803-4603-a4b4-adefde36b160"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "91acfa98-7658-45bc-bb15-2e3a0d21ed10",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "a1af3414-501f-4ee6-8ae3-866f2c664f5c",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "923bebc0-5082-4ca9-8b27-71a9111996e6",
+      "key": "CURRENT_VERSION",
+      "value": "1"
+    },
+    {
+      "id": "2a471338-df91-4cef-adbf-9e5298364407",
+      "key": "BASE_URL",
+      "value": "http://localhost:31410",
+      "disabled": true
+    },
+    {
+      "id": "db32b9b6-e210-4ac1-8f33-b5f2a7f1983d",
+      "key": "TEAM_NAME",
+      "value": "t10 Random Code Generators"
+    }
+  ]
+}

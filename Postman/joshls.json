@@ -1,0 +1,364 @@
+{
+  "info": {
+    "_postman_id": "75eb7f59-e7a2-4679-b035-6dfa429898be",
+    "name": "cs314-collection-template",
+    "description": "This is a template collection for CS314.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Config Test",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "28e96beb-cffd-44a6-a4ff-9f81c54a8de7",
+            "exec": [
+              "pm.test(\"joshls: Status test for config\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "e978e3d5-fa1a-4ddb-8b34-6989996badc6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"requestType\":\"config\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/config"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance Test 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1752f509-02cb-4a5c-b019-1e7b47997873",
+            "exec": [
+              "pm.test(\"joshls: Status test for simple distances request\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "562a500a-b325-4077-9a6a-f576a56bdb80",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"distances\",\n\t\"places\": [{\n\t\t\"streetAddress\": \"East Orchard Road\",\n\t\t\"latitude\": \"39.60951958831538\",\n\t\t\"longitude\": \"-104.87591600453017\",\n\t\t\"municipality\": \"Greenwood Village\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"postcode\": \"80111\",\n\t\t\"defaultDisplayName\": \"East Orchard Road\"\n\t}, {\n\t\t\"streetAddress\": \"South Dayton Street\",\n\t\t\"latitude\": \"39.595108839413925\",\n\t\t\"longitude\": \"-104.8761734965956\",\n\t\t\"municipality\": \"Greenwood Village\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"postcode\": \"80111-5704\",\n\t\t\"defaultDisplayName\": \"South Dayton Street\"\n\t}],\n\t\"earthRadius\": 3959\n}"
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance Test 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "943857e1-f4e6-48a2-a2e8-e92cf0a2bc36",
+            "exec": [
+              "pm.test(\"joshls: Status test for distances request between same place twice\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "304d2417-a4a9-4148-8a18-87ce7a65ec5b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"distances\",\n\t\"places\": [{\n\t\t\t\"name\": \"Null Island\",\n\t\t\t\"latitude\": \"0\",\n\t\t\t\"longitude\": \"0\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Null Island\",\n\t\t\t\"latitude\": \"0\",\n\t\t\t\"longitude\": \"0\"\n\t\t}\n\t],\n\t\"earthRadius\": 1000000\n}"
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance Test 3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "4ea81a3f-4184-4000-9cca-b9ae494f1abb",
+            "exec": [
+              "pm.test(\"joshls: Invalid distances request\", () => {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "90917347-f07f-4a31-bbee-2aa4bfae9b97",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"distances\",\n\t\"places\": [{\n\t\t\t\"name\": \"Null Island\",\n\t\t\t\"latitude\": \"0\",\n\t\t\t\"longitude\": \"0\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Null Island\",\n\t\t\t\"latitude\": \"0\",\n\t\t\t\"longitude\": \"0\"\n\t\t}\n\t],\n\t\"earthRadius\": 1000000,\n    \"pleaseCrash\": \"true\"\n}"
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Find Test 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "29dd7b9f-533d-4f17-869e-cc8b42960038",
+            "exec": [
+              "pm.test(\"joshls: Status test for find request to real place\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "eb82b49f-2aa5-4adc-8b00-22425d03b549",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\":\"find\",\n    \"match\":\"Cherry Creek\",\n    \"limit\":100\n}"
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find Test 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a5539d2a-29eb-4e44-8c9a-83d0904f9927",
+            "exec": [
+              "pm.test(\"joshls: Status test for find request to fake place\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "1893eca8-4af4-4063-8e1d-c5a43850b14e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\":\"find\",\n    \"match\":\"Totally Real Fictional Place\",\n    \"limit\":100\n}"
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find Test 3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "10e3bf3c-83e9-4493-9920-06644c86b7b1",
+            "exec": [
+              "pm.test(\"joshls: Invalid find request\", () => {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "f80456c8-141a-4d2e-88c2-27e77d4cf2eb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"find\",\n    \"dontMatch\": \"server, please go on strike\"\n}"
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour Test 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "16e65993-42a2-4882-8a89-a2e8c536907d",
+            "exec": [
+              "pm.test(\"joshls: Status test for simple tour request\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "bb2f592b-6373-4584-8746-705109df3c6f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"tour\",\n\t\"earthRadius\": 3959,\n\t\"response\": 1,\n\t\"places\": [{\n\t\t\"streetAddress\": \"West County Road 48C\",\n\t\t\"latitude\": \"40.59970365192765\",\n\t\t\"longitude\": \"-105.17621613107623\",\n\t\t\"municipality\": \"Larimer County\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"postcode\": \"80535-9359\",\n\t\t\"defaultDisplayName\": \"West County Road 48C\"\n\t}, {\n\t\t\"streetAddress\": \"Coyote Rim Ranch Road\",\n\t\t\"latitude\": \"40.508926768090724\",\n\t\t\"longitude\": \"-105.16660309396686\",\n\t\t\"municipality\": \"Larimer County\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"defaultDisplayName\": \"Coyote Rim Ranch Road\"\n\t}, {\n\t\t\"streetAddress\": \"41342 County Road 19\",\n\t\t\"latitude\": \"40.60283169400061\",\n\t\t\"longitude\": \"-104.88782501779498\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"postcode\": \"80610\",\n\t\t\"defaultDisplayName\": \"41342 County Road 19\"\n\t}, {\n\t\t\"streetAddress\": \"35884 State Highway 257\",\n\t\t\"latitude\": \"40.52145503417162\",\n\t\t\"longitude\": \"-104.90842438302936\",\n\t\t\"municipality\": \"Windsor\",\n\t\t\"region\": \"Colorado\",\n\t\t\"country\": \"United States\",\n\t\t\"postcode\": \"80550\",\n\t\t\"defaultDisplayName\": \"35884 State Highway 257\"\n\t}]\n}"
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour Test 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "24340e05-9565-4704-942c-91ac1d4518f0",
+            "exec": [
+              "pm.test(\"joshls: Status test for complex tour request\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "1e152fc0-6c41-4927-bf66-250da1678281",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"tour\",\n\t\"earthRadius\": 1000000,\n\t\"response\": 0.0,\n\t\"places\": [{\n\t\t\"name\": \"South Pole\",\n\t\t\"latitude\": \"-90\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"somewhat cold\"\n\t}, {\n\t\t\"name\": \"Place 3\",\n\t\t\"latitude\": \"-70\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Still in Antarctica\"\n\t}, {\n\t\t\"name\": \"Place 17\",\n\t\t\"latitude\": \"70\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"No customers buddy, it's the ocean\"\n\t}, {\n\t\t\"name\": \"Place 9\",\n\t\t\"latitude\": \"-10\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"I hope this isn't a real tour\"\n\t}, {\n\t\t\"name\": \"Place 6\",\n\t\t\"latitude\": \"-40\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"wet\"\n\t}, {\n\t\t\"name\": \"Place 2\",\n\t\t\"latitude\": \"-80\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"icy\"\n\t}, {\n\t\t\"name\": \"Land!\",\n\t\t\"latitude\": \"10\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Middle of Nowhere, Ghana\"\n\t}, {\n\t\t\"name\": \"Place 4\",\n\t\t\"latitude\": \"-60\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Near Bouvet Island\"\n\t}, {\n\t\t\"name\": \"Place 8\",\n\t\t\"latitude\": \"-20\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Napoleon was nearby\"\n\t}, {\n\t\t\"name\": \"Place 13\",\n\t\t\"latitude\": \"30\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Middle of Nowhere, Algeria\"\n\t}, {\n\t\t\"name\": \"Place 15\",\n\t\t\"latitude\": \"50\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Yay, more water!\"\n\t}, {\n\t\t\"name\": \"Place 16\",\n\t\t\"latitude\": \"60\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"I hope we're not traveling by balloon\"\n\t}, {\n\t\t\"name\": \"Place 7\",\n\t\t\"latitude\": \"-30\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"more ocean\"\n\t}, {\n\t\t\"name\": \"Place 5\",\n\t\t\"latitude\": \"-50\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"boring\"\n\t}, {\n\t\t\"name\": \"Place 12\",\n\t\t\"latitude\": \"20\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Not mapped by OSM\"\n\t}, {\n\t\t\"name\": \"Place 14\",\n\t\t\"latitude\": \"40\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Somewhere, Spain\"\n\t}, {\n\t\t\"name\": \"Null Island\",\n\t\t\"latitude\": \"0\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Where your null pointers come from\"\n\t}, {\n\t\t\"name\": \"North Pole\",\n\t\t\"latitude\": \"90\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"cold\"\n\t}]\n}"
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour Test 3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e136973c-b1fd-46d0-b7ad-aca66dbb3dc4",
+            "exec": [
+              "pm.test(\"joshls: Status test for invalid tour request\", () => {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "0909eab8-aa22-4e83-b64e-6ceaf39121e3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"requestType\": \"tour\",\n\t\"earthRadius\": \"Why should I tell you? You figure it out server!\",\n\t\"response\": 0.0,\n\t\"places\": [{\n\t\t\"name\": \"South Pole\",\n\t\t\"latitude\": \"-90\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"somewhat cold\"\n\t}, {\n\t\t\"name\": \"Place 3\",\n\t\t\"latitude\": \"-70\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Still in Antarctica\"\n\t}, {\n\t\t\"name\": \"Place 17\",\n\t\t\"latitude\": \"70\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"No customers buddy, it's the ocean\"\n\t}, {\n\t\t\"name\": \"Place 9\",\n\t\t\"latitude\": \"-10\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"I hope this isn't a real tour\"\n\t}, {\n\t\t\"name\": \"Place 6\",\n\t\t\"latitude\": \"-40\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"wet\"\n\t}, {\n\t\t\"name\": \"Place 2\",\n\t\t\"latitude\": \"-80\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"icy\"\n\t}, {\n\t\t\"name\": \"Land!\",\n\t\t\"latitude\": \"10\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Middle of Nowhere, Ghana\"\n\t}, {\n\t\t\"name\": \"Place 4\",\n\t\t\"latitude\": \"-60\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Near Bouvet Island\"\n\t}, {\n\t\t\"name\": \"Place 8\",\n\t\t\"latitude\": \"-20\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Napoleon was nearby\"\n\t}, {\n\t\t\"name\": \"Place 13\",\n\t\t\"latitude\": \"30\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Middle of Nowhere, Algeria\"\n\t}, {\n\t\t\"name\": \"Place 15\",\n\t\t\"latitude\": \"50\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Yay, more water!\"\n\t}, {\n\t\t\"name\": \"Place 16\",\n\t\t\"latitude\": \"60\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"I hope we're not traveling by balloon\"\n\t}, {\n\t\t\"name\": \"Place 7\",\n\t\t\"latitude\": \"-30\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"more ocean\"\n\t}, {\n\t\t\"name\": \"Place 5\",\n\t\t\"latitude\": \"-50\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"boring\"\n\t}, {\n\t\t\"name\": \"Place 12\",\n\t\t\"latitude\": \"20\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Not mapped by OSM\"\n\t}, {\n\t\t\"name\": \"Place 14\",\n\t\t\"latitude\": \"40\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Somewhere, Spain\"\n\t}, {\n\t\t\"name\": \"Null Island\",\n\t\t\"latitude\": \"0\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"Where your null pointers come from\"\n\t}, {\n\t\t\"name\": \"North Pole\",\n\t\t\"latitude\": \"90\",\n\t\t\"longitude\": \"0\",\n\t\t\"notes\": \"cold\"\n\t}]\n}"
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "4fb09426-5c09-42ab-a17d-9f2955cabcf8"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "1051555d-f62c-4f87-8775-82172324bb59"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "a7d50c6e-3f7b-4308-af37-11afa2abbce9",
+      "key": "CURRENT_VERSION",
+      "value": "1"
+    },
+    {
+      "id": "99a2545c-ebef-4c16-bad9-4ca8f709171e",
+      "key": "BASE_URL",
+      "value": "http://localhost:41310"
+    },
+    {
+      "id": "009b017f-7ad6-4630-8f1c-12e44d9d9594",
+      "key": "TEAM_NAME",
+      "value": "t10 Random Code Generators"
+    }
+  ]
+}

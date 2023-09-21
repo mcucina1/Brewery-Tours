@@ -1,0 +1,560 @@
+{
+  "info": {
+    "_postman_id": "db5db070-b97c-4521-9e8b-0b0f5878467f",
+    "name": "cs314-collection-template",
+    "description": "This is a template collection for CS314.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Distances - empty array",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"distances\");",
+              "});",
+              "pm.test(\"Length is empty\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.distances).to.eql([]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "47513d9b-8093-42d6-b304-f89809ea11d0",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 3959\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Find - type & where unsupported",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP400 status\", () => {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "18a18fce-81eb-4422-900c-4a63ea6be6d4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"dave\",\n    \"limit\": 0,\n    \"where\": \"Canada\",\n    \"type\": \"Airport\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find - empty string returns 50427 places found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"find\");",
+              "});",
+              "pm.test(\"Empty string finds 50427\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.found).to.equal(50427);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "424e2505-c926-458e-aaa8-41f97bfd44fe",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"\",\n    \"limit\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find - pappy returns correct place",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"find\");",
+              "});",
+              "pm.test(\"pappy finds 1 place\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.found).to.equal(1);",
+              "});",
+              "pm.test(\"pappy finds the correct place\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.places).to.eql([",
+              "        {",
+              "            \"continent\": \"North America\",",
+              "            \"country\": \"United States\",",
+              "            \"altitude\": \"2320\",",
+              "            \"latitude\": \"47.77429962\",",
+              "            \"name\": \"Coeur D'Alene - Pappy Boyington Field\",",
+              "            \"municipality\": \"Coeur d'Alene\",",
+              "            \"region\": \"Idaho\",",
+              "            \"longitude\": \"-116.8199997\"",
+              "        }",
+              "    ]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "83c57993-eeeb-4e95-b188-183f669010cd",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"pappy\",\n    \"limit\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Config - feature validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"config\");",
+              "});",
+              "pm.test(\"Features length is 4\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.features.length).to.equal(4);",
+              "});",
+              "pm.test(\"Features validation\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.features).to.eql([\"config\", \"distances\", \"find\",  \"tour\"]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "ce340cbf-ac88-466e-9634-9cf1883c3a0f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"config\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/config"
+      },
+      "response": []
+    },
+    {
+      "name": "Distances - one place one distance 0",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"distances\");",
+              "});",
+              "pm.test(\"Length is one: 0\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.distances).to.eql([0]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "322f89d6-a750-4cd8-a13f-dca16b2ed431",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [\n        {\"latitude\": \"40.59\",\n        \"longitude\": \"-105.08\"}],\n    \"earthRadius\": 3959\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Distances - two places two distances",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"distances\");",
+              "});",
+              "pm.test(\"Length is 2\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.distances.length).to.equal(2);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "0b00e663-b4f9-48cf-9f61-5a3566c96c17",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [\n        {\"latitude\": \"40.59\",\n        \"longitude\": \"-105.08\"},\n        {\"latitude\": \"-40.59\",\n        \"longitude\": \"105.08\"}],\n    \"earthRadius\": 3959\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour - empty places returns empy places",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"tour\");",
+              "});",
+              "pm.test(\"places is empty\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.places).to.eql([]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "e47fd230-31b3-4549-8472-5d0afa8d8eb8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"tour\",\n    \"response\": 1,\n    \"earthRadius\": 3959.0,\n    \"places\":[]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour - bowtie reordered to rectangle",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"tour\");",
+              "});",
+              "pm.test(\"Places form rectangle\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.places).to.eql([",
+              "        {\"latitude\": \"30\",",
+              "        \"longitude\": \"-30\"},",
+              "        {\"latitude\": \"30\",",
+              "        \"longitude\": \"30\"},",
+              "        {\"latitude\": \"-30\",",
+              "        \"longitude\": \"30\"},",
+              "        {\"latitude\": \"-30\",",
+              "        \"longitude\": \"-30\"}",
+              "    ]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "dbc638e7-b438-4523-8c8a-51e50a50ff71",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"tour\",\n    \"response\": 1,\n    \"earthRadius\": 3959.0,\n    \"places\":[\n        {\"latitude\": \"30\",\n        \"longitude\": \"-30\"},\n        {\"latitude\": \"-30\",\n        \"longitude\": \"30\"},\n        {\"latitude\": \"30\",\n        \"longitude\": \"30\"},\n        {\"latitude\": \"-30\",\n        \"longitude\": \"-30\"}\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour - three places returns unaltered",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5dbdfbf1-76fd-449a-854b-8a4843b3a229",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"JSON test\", () => {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"requestType test\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.requestType).to.equal(\"tour\");",
+              "});",
+              "pm.test(\"Places unaltered\", () => {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.places).to.eql([",
+              "        {\"latitude\": \"30\",",
+              "        \"longitude\": \"-30\"},",
+              "        {\"latitude\": \"-30\",",
+              "        \"longitude\": \"30\"},",
+              "        {\"latitude\": \"30\",",
+              "        \"longitude\": \"30\"}",
+              "    ]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "67e2c44d-6078-4bf5-9b7d-c7180bffcff8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"requestType\": \"tour\",\n    \"response\": 1,\n    \"earthRadius\": 3959.0,\n    \"places\":[\n        {\"latitude\": \"30\",\n        \"longitude\": \"-30\"},\n        {\"latitude\": \"-30\",\n        \"longitude\": \"30\"},\n        {\"latitude\": \"30\",\n        \"longitude\": \"30\"}\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "2dbd0df9-e5fd-417d-90c8-d12429ed2e48"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "1b6e5f5d-c969-4ca7-9578-e237b36c482f"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "de9d9d94-1f24-4262-99fc-b922036ba323",
+      "key": "CURRENT_VERSION",
+      "value": "1"
+    },
+    {
+      "id": "32a1015b-fecd-4287-8fd9-25c1897a4b54",
+      "key": "BASE_URL",
+      "value": "http://localhost:8000"
+    },
+    {
+      "id": "a304ef5d-5d32-439f-8e68-2d222c5288a2",
+      "key": "TEAM_NAME",
+      "value": "txx team name"
+    }
+  ]
+}

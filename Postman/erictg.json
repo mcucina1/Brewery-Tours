@@ -1,0 +1,419 @@
+{
+  "info": {
+    "_postman_id": "56bbd98d-0c53-44fd-b290-e8f436a02aa6",
+    "name": "cs314-collection-template",
+    "description": "This is a template collection for CS314.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Config1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "4956977f-c6ca-49e0-b579-86bfba43fc08",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "11dc892a-8587-4f2d-aae1-6a315e8dbf61",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"requestType\": \"config\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/config"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "71f40f1a-8e02-4efe-9ebe-590ebbaefd2c",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "d53557f1-c079-4940-8b6e-39fa2417d17d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"places\": [\r\n        {\r\n            \"name\": \"Morelia\",\r\n            \"latitude\": \"19.7024992\",\r\n            \"longitude\": \"-101.1923097\"\r\n        },\r\n        {\r\n            \"name\": \"Rio de Janeiro\",\r\n            \"latitude\": \"-22.9508215\",\r\n            \"longitude\": \"-43.2116499\"\r\n        },\r\n        {\r\n            \"name\": \"Toronto\",\r\n            \"latitude\": \"43.6422717\",\r\n            \"longitude\": \"-79.3870639\"\r\n        },\r\n        {\r\n            \"name\": \"London\",\r\n            \"latitude\": \"51.5007491\",\r\n            \"longitude\": \"-0.1245950\"\r\n        }\r\n    ],\r\n    \"earthRadius\": 58124.01549973,\r\n    \"requestType\": \"distances\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5ff4d8a5-d045-4b50-b17a-1dbb46b43b89",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "068daa03-f3ec-4c4c-a34b-9d8485b1e181",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"places\": [\r\n        {\r\n            \"latitude\": \"0\",\r\n            \"longitude\": \"0\"\r\n        },\r\n        {\r\n            \"latitude\": \"90\",\r\n            \"longitude\": \"180\"\r\n        },\r\n        {\r\n            \"latitude\": \"-0\",\r\n            \"longitude\": \"-0\"\r\n        },\r\n        {\r\n            \"latitude\": \"-90\",\r\n            \"longitude\": \"-180\"\r\n        },\r\n        {\r\n            \"latitude\": \"0.0\",\r\n            \"longitude\": \"0.0\"\r\n        },\r\n        {\r\n            \"latitude\": \"90.0\",\r\n            \"longitude\": \"180.0\"\r\n        },\r\n        {\r\n            \"latitude\": \"-0.0\",\r\n            \"longitude\": \"-0.0\"\r\n        },\r\n        {\r\n            \"latitude\": \"-90.0\",\r\n            \"longitude\": \"-180.0\"\r\n        },\r\n        {\r\n            \"latitude\": \"45\",\r\n            \"longitude\": \"90\"\r\n        },\r\n        {\r\n            \"latitude\": \"-45\",\r\n            \"longitude\": \"-90\"\r\n        },\r\n        {\r\n            \"latitude\": \"45.0\",\r\n            \"longitude\": \"90.0\"\r\n        },\r\n        {\r\n            \"latitude\": \"-45.0\",\r\n            \"longitude\": \"-90.0\"\r\n        }\r\n    ],\r\n    \"earthRadius\": 2.090352E7,\r\n    \"requestType\": \"distances\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Distance3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ff6e776a-c263-412c-9ad4-552e8a081fd4",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "9a598f11-e157-41b0-8416-89652edb121b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"places\": [\r\n        {\r\n            \"latitude\": \"27.9506\",\r\n            \"longitude\": \"-82.4572\"\r\n        },\r\n        {\r\n            \"latitude\": \"40.8136\",\r\n            \"longitude\": \"-96.7026\"\r\n        },\r\n        {\r\n            \"latitude\": \"39.7392\",\r\n            \"longitude\": \"-104.9903\"\r\n        },\r\n        {\r\n            \"latitude\": \"41.1400\",\r\n            \"longitude\": \"-104.8202\"\r\n        },\r\n        {\r\n            \"latitude\": \"32.7157\",\r\n            \"longitude\": \"-117.1611\"\r\n        }\r\n    ],\r\n    \"earthRadius\": 1337.0,\r\n    \"requestType\": \"distances\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/distances"
+      },
+      "response": []
+    },
+    {
+      "name": "Find1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b0ef0ba2-0296-4856-94f8-e194be4e5773",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "d88e4740-ba5b-4376-b9f0-6bd9a67e1fc6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"requestType\"    : \"find\",\r\n  \"match\"          : \"dave\",\r\n  \"limit\"          : 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "add69bab-c8b7-4de6-8dd4-9e574aef4ac7",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "8effda48-6c34-4f42-8c0e-79974b66838c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"match\": \"=\",\r\n    \"limit\": 20,\r\n    \"requestType\": \"find\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Find3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ada2ff14-a37d-4023-b55a-1f0a84586369",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "4157a5a7-881d-4c1c-acdb-188d08114f49",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"match\": \"'\",\r\n    \"limit\": 12,\r\n    \"requestType\": \"find\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/find"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "4a68f3cf-5106-4f4c-aa3a-af04ae291961",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "e2ed052b-76ac-4075-9091-31c61057f709",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"requestType\"    : \"tour\",\r\n  \"earthRadius\"    : 3959.0,\r\n  \"response\"       : 0.0,\r\n  \"places\"         : [{\"name\":\"Denver\",       \"latitude\": \"39.7\", \"longitude\": \"-105.0\", \"notes\":\"The big city\"},\r\n                      {\"name\":\"Boulder\",      \"latitude\": \"40.0\", \"longitude\": \"-105.4\", \"notes\":\"Home of CU\"},\r\n                      {\"name\":\"Fort Collins\", \"latitude\": \"40.6\", \"longitude\": \"-105.1\", \"notes\":\"Home of CSU\"}]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "caade487-2d00-42eb-9cfd-b14cf93e6f67",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "7564e714-b8f3-4f0f-8243-612c0a352207",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \t\"requestType\"\t: \"tour\",\r\n  \t\"earthRadius\"\t: 6000.000001,\r\n  \t\"response\"\t: 1,\r\n   \t\"places\"\t: [\r\n                      {\"name\": \"Beijing National Stadium\", \"latitude\": \"39.9924068\", \"longitude\": \"116.3966713\"},\r\n                      {\"name\": \"AT&T Stadium\", \"latitude\": \"32.7471466\", \"longitude\": \"-97.0945572\"},\r\n                      {\"name\": \"Stade des Martyrs\", \"latitude\": \"-4.3312273\", \"longitude\": \"15.3090701\"},\r\n                      {\"name\": \"Stadio San Siro\", \"latitude\": \"45.4787984\", \"longitude\": \"9.1252248\"},\r\n                      {\"name\": \"Shah Alam Stadium\", \"latitude\": \"3.0796801\", \"longitude\": \"101.5448445\"},\r\n                      {\"name\": \"Luzhniki Stadium\", \"latitude\": \"55.7150783\", \"longitude\": \"37.5539672\"},\r\n                      {\"name\": \"Estadio Santiago Bernabeu\", \"latitude\": \"40.4523519\", \"longitude\": \"-3.6877869\"},\r\n                      {\"name\": \"FedEx Field\", \"latitude\": \"38.9082274\", \"longitude\": \"-76.8660204\"},\r\n                      {\"name\": \"Croke Park\", \"latitude\": \"53.3601930\", \"longitude\": \"-6.2523311\"},\r\n                      {\"name\": \"MetLife Stadium\", \"latitude\": \"40.8138628\", \"longitude\": \"-74.0729869\"},\r\n                      {\"name\": \"ANZ Stadium\", \"latitude\": \"-33.8485624\", \"longitude\": \"151.0636214\"},\r\n                      {\"name\": \"Estadio Monumental\", \"latitude\": \"-12.0569765\", \"longitude\": \"-76.9354722\"},\r\n                      {\"name\": \"Borg El Arab Stadium\", \"latitude\": \"30.9990000\", \"longitude\": \"29.7294109\"}\r\n                      ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    },
+    {
+      "name": "Tour3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5cbe5e9f-e858-4fb6-946a-cdd07cd4f08a",
+            "exec": [
+              "pm.test(\"Response is HTTP200 status\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "f8133b43-7175-46fb-bcc5-d8c36d00d8c3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"requestType\": \"tour\",\r\n  \"earthRadius\": 3959.0,\r\n  \"response\": 1,\r\n  \"places\": [\r\n      {\r\n          \"name\": \"Converse County\",\r\n          \"latitude\": \"42.74\",\r\n          \"longitude\": \"-105.58\"\r\n      },\r\n            {\r\n          \"name\": \"Daisy Road\",\r\n          \"latitude\": \"38.96\",\r\n          \"longitude\": \"-97.32\"\r\n      },\r\n            {\r\n          \"name\": \"Cedar County\",\r\n          \"latitude\": \"42.67\",\r\n          \"longitude\": \"-97.32\"\r\n      },\r\n      {\r\n          \"name\": \"8711 West Dakota Avenue\",\r\n          \"latitude\": \"39.71\",\r\n          \"longitude\": \"-105.09\"\r\n      },\r\n      {\r\n          \"name\": \"Zhalagash District\",\r\n          \"latitude\": \"44.45\",\r\n          \"longitude\": \"64.70\"\r\n      },\r\n      {\r\n          \"name\": \"Jalal-Abad\",\r\n          \"latitude\": \"41.08\",\r\n          \"longitude\": \"73.74\"\r\n      },\r\n      {\r\n          \"name\": \"Moiynkum District\",\r\n          \"latitude\": \"44.92\",\r\n          \"longitude\": \"74.09\"\r\n      },\r\n      {\r\n          \"name\": \"Bukhara Region\",\r\n          \"latitude\": \"40.93\",\r\n          \"longitude\": \"62.36\"\r\n      },\r\n      {\r\n          \"name\": \"Jegan Maunde\",\r\n          \"latitude\": \"9.26\",\r\n          \"longitude\": \"11.52\"\r\n      },\r\n      {\r\n          \"name\": \"Lower Uele\",\r\n          \"latitude\": \"4.47\",\r\n          \"longitude\": \"25.75\"\r\n      },\r\n      {\r\n          \"name\": \"Sowdari\",\r\n          \"latitude\": \"14.27\",\r\n          \"longitude\": \"27.42\"\r\n      },\r\n      {\r\n          \"name\": \"Ayos\",\r\n          \"latitude\": \"4.03\",\r\n          \"longitude\": \"12.39\"\r\n      }\r\n\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{BASE_URL}}/api/tour"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "7985bbd0-7df9-421e-ac85-3155c7e93d91"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ],
+        "id": "2c48bf72-105e-4c3e-b441-51aee8ae4818"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "59a716e3-0833-4974-9ccd-4e4f99fa2dc3",
+      "key": "CURRENT_VERSION",
+      "value": "1"
+    },
+    {
+      "id": "e55bca7e-ae5f-4fc1-9d5d-3f501142efe7",
+      "key": "BASE_URL",
+      "value": "http://localhost:8000"
+    },
+    {
+      "id": "57e1b242-75a1-42c6-b9e9-1478bde3b838",
+      "key": "TEAM_NAME",
+      "value": "txx team name"
+    }
+  ]
+}

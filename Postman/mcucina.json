@@ -1,0 +1,383 @@
+{
+  "info": {
+    "_postman_id": "8386edaa-52e8-4a01-b673-8914be7b9df0",
+    "name": "cs314-collection-template",
+    "description": "This is a template collection for CS314.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Config",
+      "item": [
+        {
+          "name": "Config Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "fae70820-a82c-491d-a0f2-591bcd3b1e47",
+                "exec": [
+                  "pm.test(\"Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "7b84c820-f0c5-40ee-8d22-940d999b15c2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\": \"config\",\n    \"features\": [\"config\"] \n}"
+            },
+            "url": "{{BASE_URL}}/api/config"
+          },
+          "response": []
+        }
+      ],
+      "id": "46ad9cc1-2f38-4687-bafb-f589af4ace9a"
+    },
+    {
+      "name": "Distances",
+      "item": [
+        {
+          "name": "Distances Test 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "187f8ebf-fc09-461b-9399-a4ce82f2fc99",
+                "exec": [
+                  "pm.test(\"mcucina: Response is HTTP200 status\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "4df03198-d0cb-4df9-9309-fbe2e55997f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"distances\",\n    \"earthRadius\"   : 3962.9265,\n    \"places\"        : [{\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"},\n                        {\"name\": \"Osan\", \"latitude\":  \"37.14\", \"longitude\": \"127.07\"},\n                        {\"name\": \"Clovis,NM\", \"latitude\":  \"34.40\", \"longitude\": \"-103.20\"},\n                        {\"name\": \"Djibouti\", \"latitude\":  \"11.82\", \"longitude\": \"42.59\"}]\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/distances"
+          },
+          "response": []
+        },
+        {
+          "name": "Distances Test 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d17fc716-5848-4ca7-83ab-2bcf266cf2b5",
+                "exec": [
+                  "pm.test(\"mcucina: large earth radius returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "a85988fb-4d54-4a0e-9115-6a3bd7a34fde",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"distances\",\n    \"earthRadius\"   : 1000000000000000,\n    \"places\"        : [{\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"},\n                        {\"name\": \"Osan\", \"latitude\":  \"37.14\", \"longitude\": \"127.07\"},\n                        {\"name\": \"Clovis,NM\", \"latitude\":  \"34.40\", \"longitude\": \"-103.20\"},\n                        {\"name\": \"Djibouti\", \"latitude\":  \"11.82\", \"longitude\": \"42.59\"}]\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/distances"
+          },
+          "response": []
+        },
+        {
+          "name": "Distances Test 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "999de2d7-3452-4f0c-8695-a1a23ee78f29",
+                "exec": [
+                  "pm.test(\"mcucina: trip with same places returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "0579634c-f10e-4f2a-a2b8-94a0867d7f8f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"distances\",\n    \"earthRadius\"   : 1000000000000000,\n    \"places\"        : [{\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"},\n                        {\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"}]\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/distances"
+          },
+          "response": []
+        }
+      ],
+      "id": "05c43508-dbc2-41fc-af8c-f8cfb5a013b4"
+    },
+    {
+      "name": "Find",
+      "item": [
+        {
+          "name": "Find Test 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "aa4d85f2-77e3-4dea-99fe-bbcd52ede32f",
+                "exec": [
+                  "pm.test(\"mcucina: found place returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "eea28c96-4bd8-42af-92e6-b077cc8dece7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"find\",\n    \"match\": \"Narita\",\n    \"limit\": 10\n}"
+            },
+            "url": "{{BASE_URL}}/api/find"
+          },
+          "response": []
+        },
+        {
+          "name": "Find Test 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "824e222b-2bd1-4ee0-b2c9-e12fdbb48c91",
+                "exec": [
+                  "pm.test(\"mcucina: fake found place returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "760fd1f9-c634-4417-83fc-9df12f8b7c28",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"find\",\n    \"match\": \"Narnia\",\n    \"limit\": 10\n}"
+            },
+            "url": "{{BASE_URL}}/api/find"
+          },
+          "response": []
+        },
+        {
+          "name": "Find Test 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f19672bb-642c-437c-95af-e281a69d4b7a",
+                "exec": [
+                  "pm.test(\"mcucina: testing type and where returns 400\", () => {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "f0f23255-9b8a-4dd5-90c6-c96adca5d257",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\"    : \"find\",\n    \"match\": \"Denver\",\n    \"type\": \"airport\",\n    \"where\": \"North America\",\n    \"limit\": 10\n}"
+            },
+            "url": "{{BASE_URL}}/api/find"
+          },
+          "response": []
+        }
+      ],
+      "id": "f90b240b-453c-40ad-89d6-3b08b07e64ea"
+    },
+    {
+      "name": "Tour",
+      "item": [
+        {
+          "name": "Tour Test 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ebea110e-95a1-4171-81c7-64c29bd83bcf",
+                "exec": [
+                  "pm.test(\"mcucina: valid tour returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "190f09ec-17e4-4a9f-9c76-e7b1cfea1099",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\": \"tour\",\n    \"earthRadius\": 3569,\n    \"response\": 0.0,\n    \"places\"        : [{\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"},\n                        {\"name\": \"Osan\", \"latitude\":  \"37.14\", \"longitude\": \"127.07\"},\n                        {\"name\": \"Clovis,NM\", \"latitude\":  \"34.40\", \"longitude\": \"-103.20\"},\n                        {\"name\": \"Djibouti\", \"latitude\":  \"11.82\", \"longitude\": \"42.59\"}]\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/tour"
+          },
+          "response": []
+        },
+        {
+          "name": "Tour Test 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5b5e3493-c964-4dd8-9061-462c34458f38",
+                "exec": [
+                  "pm.test(\"mcucina: empty places returns 200\", () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "f08ffc1d-12e7-47bb-829c-d4a43a9da83d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\": \"tour\",\n    \"earthRadius\": 3569,\n    \"response\": 0.0,\n    \"places\"        : []\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/tour"
+          },
+          "response": []
+        },
+        {
+          "name": "Tour Test 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9d3594de-e725-41f2-8b51-30f2d9587cfc",
+                "exec": [
+                  "pm.test(\"mcucina: invalid tour returns 400\", () => {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "33050e19-d08d-4b95-92cb-4b3380e523f5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"requestType\": \"tour\",\n    \"earthRadius\": 0,\n    \"response\": 0.0,\n    \"places\"        : [{\"name\":\"Osaka\", \"latitude\":  \"34.869\",  \"longitude\": \"135.50\"},\n                        {\"name\": \"Osan\", \"latitude\":  \"37.14\", \"longitude\": \"127.07\"},\n                        {\"name\": \"Clovis,NM\", \"latitude\":  \"34.40\", \"longitude\": \"-103.20\"},\n                        {\"name\": \"Djibouti\", \"latitude\":  \"11.82\", \"longitude\": \"42.59\"}]\n    \n}"
+            },
+            "url": "{{BASE_URL}}/api/tour"
+          },
+          "response": []
+        }
+      ],
+      "id": "6fee0666-ae93-42d5-969b-5d0dbcc66cbb"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "64c660fb-1917-45fc-a5a3-8c477acb8c00",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "db9e9443-963b-46a7-8689-96223f6c65bb",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "d187d356-6d8e-4b54-83fb-23aac59e92b2",
+      "key": "CURRENT_VERSION",
+      "value": "1"
+    },
+    {
+      "id": "1f4bb9e6-86d2-4a4c-b062-138b15ef959b",
+      "key": "BASE_URL",
+      "value": "http://localhost:41310"
+    },
+    {
+      "id": "9b5e0abc-8045-47c5-8fd4-31b367338875",
+      "key": "TEAM_NAME",
+      "value": "t10 Random Code Generators"
+    }
+  ]
+}
